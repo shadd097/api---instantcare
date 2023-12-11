@@ -4,15 +4,11 @@ const morgan = require('morgan')
 const mongoose = require('mongoose');
 const dotenv = require('dotenv')
 
-// const router = express.Router()
 const asyncHandler = require('express-async-handler')
-// const cloudinary = require('../config/cloudinary')
-// const upload = require('../middleware/multer')
 const Appointment = require('./models/appointment')
 
 
-const PORT = process.env.PORT || 5000
-// const images = require('./routes/uploadRoute')
+const PORT = process.env.PORT || 10000
 
 //Allow access to .env file
 dotenv.config()
@@ -36,11 +32,6 @@ mongoose.connect(process.env.MONGO_URL, {
 ).then(() => console.log("mongoDB is connected"))
 .catch((err) => console.log(err));
 
-
-
-// app.get(PORT, () => {
-//   res.send("YOOOOOOOOOOOOOOO");
-// })
 
 //POST Upload Route
 app.post('/createAppointment', asyncHandler(async (req, res) => {
