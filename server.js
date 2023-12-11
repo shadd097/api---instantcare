@@ -8,7 +8,7 @@ const dotenv = require('dotenv')
 const asyncHandler = require('express-async-handler')
 // const cloudinary = require('../config/cloudinary')
 // const upload = require('../middleware/multer')
-const Appointment = require('../API/models/appointment')
+const Appointment = require('./models/appointment')
 
 
 const PORT = process.env.PORT || 5000
