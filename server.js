@@ -21,8 +21,6 @@ app.use(cors())
 app.use(express.json());
 app.use(morgan("common"))
 
-// //configure api from api route
-// app.use('/api', images)
 
 //Connect to MongoDB Atlas
 mongoose.set("strictQuery", false);
@@ -55,14 +53,26 @@ app.get('/getAppointments', asyncHandler(async (req, res) => {
   try {
 
     const appointments = await Appointment.find();
-    
-   
     res.status(201).json(appointments);
   } catch (err) {
     console.log(err);
   }
 
 }))
+
+
+// Endpoint to handle DELETE request for deleting an appointment by ID
+app.delete('/deleteAppointment/:id', async (req, res) => {
+  console.log("HELLO");
+  const appointmentId = req.params.id;
+  const deletedAppointment = await Appointment.deleteOne({ _id: appointmentId });
+  
+  if (deletedAppointment) {
+    res.status(200).json({ message: 'Appointment deleted successfully' });
+  } else {
+    res.status(404).json({ message: 'Appointment not found' });
+  }
+});
 
 // Port
 app.listen(PORT, () => {
